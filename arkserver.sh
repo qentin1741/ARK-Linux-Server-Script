@@ -11,9 +11,11 @@ if [ -f configuration.ini ]; then
         echo " Found configuration file, checking it now."
     fi
 else
+    clear
     echo
     echo -e '\e[1;31m ERROR \e[0m'
-    echo "No configuration file found. Dowloading from github now."
+    echo " No configuration file found. Dowloading from github now."
+    echo
     curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/configuration.ini -o configuration.ini -#
     if [ -f configuration.ini ]; then
         echo
