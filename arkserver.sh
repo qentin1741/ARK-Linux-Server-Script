@@ -55,20 +55,26 @@ else
     cd .serverscript
     echo
     echo "Now downloading script files."
+    echo
     curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/startserver -o startserver -#
     curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/stopserver -o stopserver -#
     curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/viewserver -o viewserver -#
     
     if [ -e startserver -a -e stopserver -a -e viewserver ]; then
+        echo
         echo "All scripts found."
+        echo
     else
         echo "Unable able to find one or more of the scripts. Re-Downlading Them"
+        echo
         curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/startserver -o startserver -#
         curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/stopserver -o stopserver -#
         curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/viewserver -o viewserver -#
         
         if [ -e startserver -a -e stopserver -a -e viewserver ]; then
+            echo
             echo "All scripts found."
+            echo
         else
             echo
             echo "Second time failing the download. Now exiting. Try again later."
