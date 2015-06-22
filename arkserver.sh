@@ -137,6 +137,16 @@ start () {
     ./startserver
 }
 
+stop () {
+    cd .serverscript
+    ./stopserver
+}
+
+view () {
+    cd .serverscript
+    ./viewserver
+}
+
 [ "$1" = "" ] && {
     help
     exit
