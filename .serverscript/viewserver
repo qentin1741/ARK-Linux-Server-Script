@@ -10,8 +10,9 @@ if screen -list | grep -q "$sessionName"; then
     echo
     echo " To detach from this screen, hold CTRL+A+D (in that order)"
     echo
-    echo " You will be brought to the session in 5 seconds."
-    sleep 5s
+    echo " You will be brought to the session in 10 seconds."
+    sleep 10s
+    clear
     screen -r $sessionName
     echo
 else
