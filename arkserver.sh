@@ -134,7 +134,7 @@ help () {
 
 start () {
     cd .serverscript
-    ./startscript
+    ./startserver
 }
 
 [ "$1" = "" ] && {
