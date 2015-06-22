@@ -15,7 +15,18 @@ else
     echo -e '\e[1;31m ERROR \e[0m'
     echo "No configuration file found. Dowloading from github now."
     wget https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/configuration.ini
-    echo
+    if [ -f configuration.ini ]; then
+        echo
+        echo "Configuration file download was successful. Please restart the script."
+        echo
+        exit 0
+    else
+        echo
+        echo "The script was unable to obtain the configuration.ini file. Is Github down?"
+        echo "Please try to download it yourself and add it to the same dir as this script."
+        echo
+        exit 0
+    fi
 fi
 
 # Config file.
