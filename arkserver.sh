@@ -90,7 +90,7 @@ else
     fi
 fi
 
-dir
+echo
 # Config file.
 source configuration.ini
 
