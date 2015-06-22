@@ -19,7 +19,8 @@ else
     curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/configuration.ini -o configuration.ini -#
     if [ -f configuration.ini ]; then
         echo
-        echo "Configuration file download was successful. Please restart the script."
+        echo "Configuration file download was successful."
+        echo "Please edit the config file before running the script again."
         echo
         exit 0
     else
@@ -41,14 +42,15 @@ if [ -d .serverscript ]; then
 else
     echo
     echo -e '\e[1;31m ERROR \e[0m'
-    echo "Unable to find script directory. Grabbing from github now..."
+    echo " Unable to find script directory. Grabbing from github now..."
     mkdir .serverscript
     if [ -d .serverscript ]; then
+        echo
         echo "Script directory created."
     else
         echo
         echo -e '\e[1;31m ERROR \e[0m'
-        echo "Unable to make script directory. Try again as root user."
+        echo " Unable to make script directory. Try again as root user."
         exit 0
     fi
     
