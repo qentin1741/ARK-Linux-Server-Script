@@ -49,7 +49,7 @@ else
         echo "Unable to make script directory. Try again as root user."
         exit 0
     fi
-    cd .serverscripts
+    cd .serverscript
     echo
     echo "Now downloading script files."
     wget https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/startserver
