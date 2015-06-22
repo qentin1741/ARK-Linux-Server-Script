@@ -39,6 +39,7 @@ echo
 echo "-----------------------------------------------------"
 echo
 echo "Executed File: $arkExecute"
+echo "Screen Name: $sessionName"
 echo -e "HostName: \e[1;32m$hostName\e[1;33m$arkServersName\e[0m"
 echo -e "AdminPass: \e[1;33m$adminPass \e[0m"
     
@@ -74,5 +75,10 @@ echo "-----------------------------------------------------"
 echo 
 sleep 2s
 echo "Now executing...."
-#./$arkExecute TheIsland?listen?SessionName=$hostName?ServerAdminPassword=$adminPass?ServerPassword=$serverPass?ShowMapPlayerLocation=$showPlayers?ServerHardcore=$hardcore?GlobalVoiceChat=$globalVoice?ProximityChat=$proxChat?NoTributeDownloads=$noTributeDl?AllowThirdPersonPlayer=$thirdPerson?AlwaysNotifyPlayerLeft=$notifyLeft?DontAlwaysNotifyPlayerJoined=$dontNotifyJoin?ServerPVE=$pveServer?ServerCrosshair=$crossHair?ServerForceNoHUD=$noHud?DifficultyOffset=$difficulty -server -log
 
+screen -A -m -d -S $sessionName ./$arkExecute TheIsland?listen?SessionName=$hostName?ServerAdminPassword=$adminPass?ServerPassword=$serverPass?ShowMapPlayerLocation=$showPlayers?ServerHardcore=$hardcore?GlobalVoiceChat=$globalVoice?ProximityChat=$proxChat?NoTributeDownloads=$noTributeDl?AllowThirdPersonPlayer=$thirdPerson?AlwaysNotifyPlayerLeft=$notifyLeft?DontAlwaysNotifyPlayerJoined=$dontNotifyJoin?ServerPVE=$pveServer?ServerCrosshair=$crossHair?ServerForceNoHUD=$noHud?DifficultyOffset=$difficulty -server -log
+
+echo
+echo "Server is now starting up. To access the console, relauch the scrip and type: ./arkscript viewserver"
+echo
+exit 0
