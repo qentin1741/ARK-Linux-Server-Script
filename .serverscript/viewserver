@@ -6,7 +6,7 @@ echo
 echo "Checking in session exists...
 "
 if screen -list | grep -q "$sessionName"; then
-    screen -S $sessionName
+    screen -r $sessionName
     echo
     echo "To detach from this screen, hold CTRL+A+D (in that order)"
     echo
