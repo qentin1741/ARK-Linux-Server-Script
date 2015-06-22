@@ -1,0 +1,18 @@
+#!/bin/bash
+
+source ../configuration.ini
+
+echo
+echo "Checking in session exists...
+"
+if ! screen -list | grep -q "$sessionName"; then
+    screen -S $sessionName
+    echo
+    echo "To detach from this screen, hold CTRL+A+D (in that order)"
+    echo
+else
+  echo
+  echo "Could not find the server session. The server is not running."
+  echo
+  exit 0
+fi
