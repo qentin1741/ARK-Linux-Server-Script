@@ -7,8 +7,7 @@ echo
 echo "Checking to see if the server is already running..."
 echo
 sleep 1s
-if ! screen -list | grep -q "$sessionName"; then
-    screen -S $sessionName
+if screen -list | grep -q "$sessionName"; then
     echo
     echo -e " \e[1;31mERROR \e[0m A screen with the name $sessionName is already running.\e[0m"
     echo "Would you like me to stop this running process?"
