@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source ../configuration.ini
+cd ../
 
 echo
 echo "Prepairing to stop the server. Doing checks."
