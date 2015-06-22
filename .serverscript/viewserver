@@ -6,9 +6,14 @@ echo
 echo "Checking in session exists...
 "
 if screen -list | grep -q "$sessionName"; then
-    screen -r $sessionName
     echo
-    echo "To detach from this screen, hold CTRL+A+D (in that order)"
+    echo -e " \e[1;32mIMPORTANT"
+    echo
+    echo " To detach from this screen, hold CTRL+A+D (in that order)"
+    echo
+    echo " You will be brought to the session in 5 seconds."
+    sleep 5s
+    screen -r $sessionName
     echo
 else
   echo
