@@ -39,11 +39,6 @@ if screen -list | grep -q "$sessionName"; then
         exit 0
     fi
     
-else
-  echo
-  echo "Could not find the server session. The server is not running."
-  echo
-  exit 0
 fi
 
 # Start Function (ignore my sleeps and echos, looks nicer this way)
