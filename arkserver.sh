@@ -117,14 +117,14 @@ help () {
         echo
         echo -e '\e[1;37m Use the following commands: \e[0m'
         echo
-        echo " startserver.sh <start|stop|restart>"
+        echo " arkserver.sh <start|stop|restart>"
         echo
     else
         clear
         echo
         echo -e '\e[1;37m Use the following commands: \e[0m'
         echo
-        echo " startserver.sh <start|stop|restart>"
+        echo " arkserver.sh <start|stop|restart>"
         echo
     fi
 }
