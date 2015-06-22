@@ -1,0 +1,79 @@
+#!/bin/bash
+
+# Start Function (ignore my sleeps and echos, looks nicer this way)
+start () {
+    echo
+    echo "Starting Server... Please Wait."
+    sleep 1s
+    echo
+    echo "Setting ULIMIT to 100000"
+    
+        #ulimit -n 100000
+        
+    echo 
+    echo "Going to listed game directory."
+    echo "$gameDir"
+    echo
+    cd $gameDir
+    
+    if [ -f $arkExecute ]; then
+        echo " Found executable, preparing startup parameters."        
+    else
+        echo
+        echo -e " \e[1;31mERROR \e[0m Script was unable to find th executable: \e[1;33m$arkExecute\e[0m"
+        echo; echo
+        echo " These are the files the script has found:"
+        echo; echo "================================="
+        echo -e "\e[1;32m"
+        dir
+        echo -e "\e[0m"
+        echo "================================="; echo
+        echo -e " None of these are the file \e[1;33m$arkExecute\e[0m"
+        echo " Exiting out now."
+        echo
+        exit 0
+    fi
+    
+    echo
+    echo "Running startup parameters. These parameter will be listed below now."
+    echo
+    echo "-----------------------------------------------------"
+    echo
+    echo "Executed File: $arkExecute"
+    echo -e "HostName: \e[1;32m$hostName\e[1;33m$arkServersName\e[0m"
+    echo -e "AdminPass: \e[1;33m$adminPass \e[0m"
+    
+    if [ -z $serverPass ]; then
+        echo -e "ServerPass: \e[1;31mNO PASSWORD \e[0m"
+    else
+        echo -e "ServerPass: \e[1;32m$serverPass \e[0m"
+    fi
+    
+    if [ -z $arkServersName ]; then
+        echo -e "ArkServers: \e[1;31mDISABLED \e[0m"     
+    else    
+        echo -e "ArkServers: \e[1;33m$arkServers \e[0m"   
+    fi
+    
+    echo
+    echo "#### SERVER SETTINGS ###"
+    echo
+    echo "ShowPlayers:          $showPlayers"
+    echo "Hardcore:             $hardcore"
+    echo "GlobalVoice:          $globalVoice"
+    echo "Ranged Chat:          $proxChat"
+    echo "Tribute Downloads:    $noTributeDl"
+    echo "Third Person:         $thirdPerson"
+    echo "Notify Left:          $notifyLeft"
+    echo "No Notify Join:       $dontNotifyJoin"
+    echo "PVE:                  $pveServer"
+    echo "CrossHair:            $crossHair"
+    echo "No Hud:               $noHud"
+    echo "Difficulty Rate:      $difficulty"
+    echo
+    echo "-----------------------------------------------------"
+    echo 
+    sleep 2s
+    echo "Now executing...."
+    #./$arkExecute TheIsland?listen?SessionName=$hostName?ServerAdminPassword=$adminPass?ServerPassword=$serverPass?ShowMapPlayerLocation=$showPlayers?ServerHardcore=$hardcore?GlobalVoiceChat=$globalVoice?ProximityChat=$proxChat?NoTributeDownloads=$noTributeDl?AllowThirdPersonPlayer=$thirdPerson?AlwaysNotifyPlayerLeft=$notifyLeft?DontAlwaysNotifyPlayerJoined=$dontNotifyJoin?ServerPVE=$pveServer?ServerCrosshair=$crossHair?ServerForceNoHUD=$noHud?DifficultyOffset=$difficulty -server -log
+}
