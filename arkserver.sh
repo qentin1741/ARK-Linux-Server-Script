@@ -61,6 +61,7 @@ else
     curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/startserver -o startserver -#
     curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/stopserver -o stopserver -#
     curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/viewserver -o viewserver -#
+    chmod 777 *
     
     if [ -e startserver -a -e stopserver -a -e viewserver ]; then
         echo
@@ -72,6 +73,7 @@ else
         curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/startserver -o startserver -#
         curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/stopserver -o stopserver -#
         curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/viewserver -o viewserver -#
+        chmod 777 *
         
         if [ -e startserver -a -e stopserver -a -e viewserver ]; then
             echo
@@ -86,8 +88,6 @@ else
     fi
 fi
 
-# Move dir back.
-cd ../
 # Config file.
 source configuration.ini
 
