@@ -29,7 +29,7 @@ else
     fi
 fi
 
-if [ -d .startserver ]; then
+if [ -d .serverscripts ]; then
     if [ $safetyNotif = True ]; then
         clear
         echo
@@ -41,7 +41,7 @@ else
     echo -e '\e[1;31m ERROR \e[0m'
     echo "Unable to find script directory. Grabbing from github now..."
     mkdir .serverscript
-    if [ -d .serverscript ]; then
+    if [ -d .serverscripts ]; then
         echo "Script directory created."
     else
         echo
@@ -49,10 +49,10 @@ else
         echo "Unable to make script directory. Try again as root user."
         exit 0
     fi
-    cd .serverscript
+    cd .serverscripts
     echo
     echo "Now downloading script files."
-    wget https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/startserver
+    wget https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscripts/startserver
 fi
 
 # Config file.
@@ -97,7 +97,7 @@ help () {
 }
 
 start () {
-    cd .serverscript
+    cd .serverscripts
     ./startscript
 }
 
