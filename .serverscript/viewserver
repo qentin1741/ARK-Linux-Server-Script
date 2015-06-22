@@ -3,8 +3,7 @@
 source ../configuration.ini
 
 echo
-echo "Checking in session exists...
-"
+echo "Checking in session exists..."
 if screen -list | grep -q "$sessionName"; then
     echo
     echo -e " \e[1;32mIMPORTANT"
