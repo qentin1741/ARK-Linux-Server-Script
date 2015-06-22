@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ../configuration.ini
+
 # Start Function (ignore my sleeps and echos, looks nicer this way)
 echo
 echo "Starting Server... Please Wait."
