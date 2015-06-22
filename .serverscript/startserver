@@ -3,6 +3,50 @@
 source ../configuration.ini
 cd ../
 
+echo
+echo "Checking to see if the server is already running..."
+echo
+sleep 1s
+if ! screen -list | grep -q "$sessionName"; then
+    screen -S $sessionName
+    echo
+    echo -e " \e[1;31mERROR \e[0m A screen with the name $sessionName is already running.\e[0m"
+    echo "Would you like me to stop this running process?"
+    echo
+    echo "Type: Yes(Y) or No(N)"
+    echo -n "[Y/N]: " ; read runningsession
+    
+    if [ $runningsession = Y ]; then
+        screen -S $sessionName -X quit
+        
+        if ! screen -list | grep -q "$sessionName"; then
+            echo
+            echo "Unable to stop the process. Please try yourself with this command:"
+            echo
+            echo "screen -S $sessionName -X quit"
+            echo
+            exit 0
+        else
+            echo
+            echo "Process stopped successfully. :)"
+            echo
+        fi
+    elif [ $runningsession = N ]; then
+        echo
+        echo "The script will NOT stop the session as you chose against it."
+        echo
+        echo "Exiting the script now."
+        echo
+        exit 0
+    fi
+    
+else
+  echo
+  echo "Could not find the server session. The server is not running."
+  echo
+  exit 0
+fi
+
 # Start Function (ignore my sleeps and echos, looks nicer this way)
 echo
 echo "Starting Server... Please Wait."
