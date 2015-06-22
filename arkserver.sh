@@ -62,12 +62,12 @@ else
     curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/stopserver -o stopserver -#
     curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/viewserver -o viewserver -#
     chmod 777 *
-    cd ../
     
     if [ -e startserver -a -e stopserver -a -e viewserver ]; then
         echo
         echo "All scripts found."
         echo
+        cd ../
     else
         echo "Unable able to find one or more of the scripts. Re-Downlading Them"
         echo
@@ -75,12 +75,12 @@ else
         curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/stopserver -o stopserver -#
         curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/viewserver -o viewserver -#
         chmod 777 *
-        cd ../
         
         if [ -e startserver -a -e stopserver -a -e viewserver ]; then
             echo
             echo "All scripts found."
             echo
+            cd ../
         else
             echo
             echo "Second time failing the download. Now exiting. Try again later."
