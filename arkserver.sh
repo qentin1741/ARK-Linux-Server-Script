@@ -14,7 +14,7 @@ else
     echo
     echo -e '\e[1;31m ERROR \e[0m'
     echo "No configuration file found. Dowloading from github now."
-    wget https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/configuration.ini
+    curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/configuration.ini -o configuration.ini -#
     if [ -f configuration.ini ]; then
         echo
         echo "Configuration file download was successful. Please restart the script."
@@ -52,17 +52,17 @@ else
     cd .serverscript
     echo
     echo "Now downloading script files."
-    curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/startserver
-    curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/stopserver
-    curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/viewserver
+    curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/startserver -o startserver -#
+    curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/stopserver -o stopserver -#
+    curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/viewserver -o viewserver -#
     
     if [ -e startserver -a -e stopserver -a -e viewserver ]; then
         echo "All scripts found."
     else
         echo "Unable able to find one or more of the scripts. Re-Downlading Them"
-        curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/startserver
-        curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/stopserver
-        curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/viewserver
+        curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/startserver -o startserver -#
+        curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/stopserver -o stopserver -#
+        curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/viewserver -o viewserver -#
         
         if [ -e startserver -a -e stopserver -a -e viewserver ]; then
             echo "All scripts found."
