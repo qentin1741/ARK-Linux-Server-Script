@@ -120,6 +120,6 @@ echo "Now executing...."
 screen -A -m -d -S $sessionName ./$arkExecute TheIsland?listen?SessionName=$hostName?ServerAdminPassword=$adminPass?ServerPassword=$serverPass?ShowMapPlayerLocation=$showPlayers?ServerHardcore=$hardcore?GlobalVoiceChat=$globalVoice?ProximityChat=$proxChat?NoTributeDownloads=$noTributeDl?AllowThirdPersonPlayer=$thirdPerson?AlwaysNotifyPlayerLeft=$notifyLeft?DontAlwaysNotifyPlayerJoined=$dontNotifyJoin?ServerPVE=$pveServer?ServerCrosshair=$crossHair?ServerForceNoHUD=$noHud?DifficultyOffset=$difficulty -server -log
 
 echo
-echo "Server is now starting up. To access the console, relauch the scrip and type: ./arkscript viewserver"
+echo "Server is now starting up. To access the console, relauch the scrip and type: ./arkscript view"
 echo
 exit 0
