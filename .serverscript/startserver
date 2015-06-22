@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source ../configuration.ini
+cd ../
 
 # Start Function (ignore my sleeps and echos, looks nicer this way)
 echo
