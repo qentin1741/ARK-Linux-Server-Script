@@ -78,6 +78,7 @@ else
     fi
 fi
 
+cd ../
 # Config file.
 source configuration.ini
 
