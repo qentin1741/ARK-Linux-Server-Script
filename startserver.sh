@@ -14,6 +14,7 @@ else
     echo
     echo -e '\e[1;31m ERROR \e[0m'
     echo "No configuration file found. Dowloading from github now."
+    wget https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/configuration.ini
     echo
 fi
 
