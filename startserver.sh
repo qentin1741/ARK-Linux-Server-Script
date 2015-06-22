@@ -29,6 +29,32 @@ else
     fi
 fi
 
+if [ -d .startserver ]; then
+    if [ $safetyNotif = True ]; then
+        clear
+        echo
+        sleep 1s
+        echo " Script directory is found."
+    fi
+else
+    echo
+    echo -e '\e[1;31m ERROR \e[0m'
+    echo "Unable to find script directory. Grabbing from github now..."
+    mkdir .serverscript
+    if [ -d .serverscript ]; then
+        echo "Script directory created."
+    else
+        echo
+        echo -e '\e[1;31m ERROR \e[0m'
+        echo "Unable to make script directory. Try again as root user."
+        exit 0
+    fi
+    cd .serverscript
+    echo
+    echo "Now downloading script files."
+    wget https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/startserver
+fi
+
 # Config file.
 source configuration.ini
 
