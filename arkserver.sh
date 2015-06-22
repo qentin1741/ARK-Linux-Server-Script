@@ -84,6 +84,7 @@ else
     fi
 fi
 
+# Move dir back.
 cd ../
 # Config file.
 source configuration.ini
