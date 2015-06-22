@@ -1,0 +1,16 @@
+#!/bin/bash
+
+source ../configuration.ini
+
+echo
+echo "Prepairing to stop the server. Doing checks."
+echo
+
+if ! screen -list | grep -q "$sessionName"; then
+    screen -S $sessionName -X quit
+else
+  echo
+  echo "Could not find the server session. The server is not running."
+  echo
+  exit 0
+fi
