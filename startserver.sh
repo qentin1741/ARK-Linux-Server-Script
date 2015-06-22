@@ -70,6 +70,11 @@ help () {
     fi
 }
 
+start () {
+    cd .serverscript
+    ./startscript
+}
+
 [ "$1" = "" ] && {
     help
     exit
