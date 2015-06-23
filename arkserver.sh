@@ -173,21 +173,25 @@ help () {
 }
 
 start () {
+    clear
     cd .serverscript
     ./startserver
 }
 
 stop () {
+    clear
     cd .serverscript
     ./stopserver
 }
 
 view () {
+    clear
     cd .serverscript
     ./viewserver
 }
 
 install () {
+    clear
     cd .serverscript
     ./installserver
 }
