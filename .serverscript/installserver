@@ -17,6 +17,22 @@ if [ $installchoice = Y ]; then
   echo "Directory deleted, moving foward."
 elif
   echo
+  echo "You either chose No or put a wrong response."
   echo "Directory will not be deleted, script stopping. There is no overried available."
+  exit 0
+fi
+
+echo
+echo "Creating directory 'steamcmd'"
+mkdir steamcmd
+
+if [ -d steamcmd ]; then
+  echo
+  echo "Directory created, moving forward."
+  cd steamcmd
+else
+  echo
+  echo "Unable to make the directory, please post this to the issues on github."
+  echo "https://github.com/Zendrex/ARK-Linux-Server-Script/issues"
   exit 0
 fi
