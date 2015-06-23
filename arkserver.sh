@@ -52,7 +52,7 @@ else
 fi
 
 if [ -x /usr/bin/git ]; then
-    "GIT Installed"
+    echo "GIT Installed"
 else
     echo "Script detects that Git is not installed. Installing it now."
     apt-get install git
