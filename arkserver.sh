@@ -22,6 +22,8 @@ else
         echo "Configuration file download was successful."
         echo "Please edit the config file before running the script again."
         echo
+        echo "Command: ./arkserver.sh <start|stop|view>"
+        echo
         exit 0
     else
         echo
@@ -126,7 +128,7 @@ help () {
         echo
         echo -e '\e[1;37m Use the following commands: \e[0m'
         echo
-        echo " arkserver.sh <start|stop|restart>"
+        echo " arkserver.sh <start|stop|view>"
         echo
     fi
 }
