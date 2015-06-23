@@ -148,6 +148,11 @@ view () {
     ./viewserver
 }
 
+install () {
+    cd .serverscript
+    ./installserver
+}
+
 [ "$1" = "" ] && {
     help
     exit
