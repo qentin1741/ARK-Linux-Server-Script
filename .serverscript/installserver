@@ -1,0 +1,22 @@
+#!/bin/bash
+
+source ../configuration.ini
+
+if [ -d steamcmd ]; then
+  echo
+  echo "There was a directory already named 'steamcmd', is it ok to delete this?"
+  echo
+  echo "Type: [Y]es or [N]o"
+  echo -n "[Y/N]: " ; read installchoice
+fi
+
+if [ $installchoice = Y ]; then
+  echo "Deleting directory. Please wait."
+  rm -rf steamcmd/
+  echo
+  echo "Directory deleted, moving foward."
+elif
+  echo
+  echo "Directory will not be deleted, script stopping. There is no overried available."
+  exit 0
+fi
