@@ -34,6 +34,32 @@ else
     fi
 fi
 
+# Hard dep's check. If one isnt installed, it will install it whithout asking. Can change this in the future.
+if [ -x /usr/bin/curl ]; then
+    echo "CURL Installed"
+else
+    echo "Script detects that curl is not installed. Installing it now."
+    sudo apt-get install curl
+    echo "CURL now installed."
+fi
+
+if [ -x /usr/bin/screen ]; then
+    echo "SCREEN Installed"
+else
+    echo "Script detects that Screen is not installed. Installing it now."
+    sudo apt-get install screen
+    echo "SCREEN now installed."
+fi
+
+if [ -x /usr/bin/git ]; then
+    "GIT Installed"
+else
+    echo "Script detects that Git is not installed. Installing it now."
+    apt-get install git
+    echo "GIT now installed."
+fi
+
+# Check if serverscript directory is already made.
 if [ -d .serverscript ]; then
     if [ $safetyNotif = True ]; then
         clear
