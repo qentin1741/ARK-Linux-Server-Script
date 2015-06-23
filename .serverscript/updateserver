@@ -38,4 +38,37 @@ else
   echo "Second check shows the server is offline. :) Moving foward."
 fi
 
+echo
+echo "Locating SteamCMD directory."
 cd ../
+if [ -d steamcmd ]; then
+    echo
+    echo "SteamCMD directory found, moving forward."
+else
+    echo
+    echo "Couldnt find the steamCMD directory, we will install steamCMD now."
+    echo
+    echo "Creating directory 'steamcmd'"
+    mkdir steamcmd
+    cd ../steamcmd
+    echo
+    echo "Installing linux steam dependencies."
+    sudo apt-get install lib32gcc1
+    echo "Lib32gcc1 is installed."
+    echo
+    echo "Downloading steamcmd zip."
+    curl https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz -o steamcmd_linux.tar.gz -#
+    echo
+    echo "Unzipping zip."
+    tar -xvzf steamcmd_linux.tar.gz
+    cd ../
+fi
+cd ../steamcmd
+echo
+echo "Now updating the server. This may take a while."
+echo
+./steamcmd.sh +login anonymous +force_install_dir ../ +app_update $gameid validate +quit
+echo
+echo "Complete. Exiting."
+echo
+echo "Please restart the script to start the server."
