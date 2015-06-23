@@ -37,3 +37,5 @@ else
   echo
   echo "Second check shows the server is offline. :) Moving foward."
 fi
+
+cd ../
