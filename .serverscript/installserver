@@ -2,6 +2,7 @@
 
 source ../configuration.ini
 
+cd ../
 if [ -d steamcmd ]; then
   echo
   echo "There was a directory already named 'steamcmd', is it ok to delete this?"
@@ -36,3 +37,22 @@ else
   echo "https://github.com/Zendrex/ARK-Linux-Server-Script/issues"
   exit 0
 fi
+
+echo
+echo "Installing linux steam dependencies."
+sudo apt-get install lib32gcc1
+echo "Lib32gcc1 is installed."
+echo
+echo "Downloading steamcmd zip."
+curl https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz -o steamcmd_linux.tar.gz -#
+echo
+echo "Unzipping zip."
+tar -xvzf steamcmd_linux.tar.gz
+echo
+echo "Logging into steamcmd and downlading/installing the game server files. This may take a while."
+echo
+./steamcmd.sh +login anonymous +force_install_dir ../ +app_update $gameid validate +quit
+echo
+echo "Complete. Exiting."
+echo
+echo "Please restart the script to start the server."
