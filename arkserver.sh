@@ -8,27 +8,28 @@ if [ -f configuration.ini ]; then
         clear
         echo
         sleep 1s
-        echo " Found configuration file, checking it now."
+        echo " Configuration file found."
+        echo
     fi
 else
     clear
     echo
-    echo -e '\e[1;31m ERROR \e[0m'
+    echo -e ' \e[1;31mERROR\e[0m'
     echo " No configuration file found. Dowloading from github now."
     echo
     curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/configuration.ini -o configuration.ini -#
     if [ -f configuration.ini ]; then
         echo
-        echo "Configuration file download was successful."
-        echo "Please edit the config file before running the script again."
+        echo " Configuration file download was successful."
+        echo " Please edit the config file before running the script again."
         echo
-        echo "Command: ./arkserver.sh <start|stop|view>"
+        echo " Command: ./arkserver.sh <start|stop|view>"
         echo
         exit 0
     else
         echo
-        echo "The script was unable to obtain the configuration.ini file. Is Github down?"
-        echo "Please try to download it yourself and add it to the same dir as this script."
+        echo " The script was unable to obtain the configuration.ini file. Is Github down?"
+        echo " Please try to download it yourself and add it to the same dir as this script."
         echo
         exit 0
     fi
