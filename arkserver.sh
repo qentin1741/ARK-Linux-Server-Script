@@ -37,30 +37,30 @@ fi
 # Hard dep's check. If one isnt installed, it will install it whithout asking. Can change this in the future.
 echo "------------------------------------------------------"
 if [ -x /usr/bin/curl ]; then
-    echo -e "\e[1;32mCURL Installed\e[0m"
+    echo -e " \e[1;32mCURL Installed\e[0m"
 else
-    echo -e "\e[1;31mERROR\e[0m"
-    echo "Script detects that curl is not installed. Installing it now."
+    echo -e " \e[1;31mERROR\e[0m"
+    echo " Script detects that curl is not installed. Installing it now."
     sudo apt-get install curl
-    echo "CURL now installed."
+    echo " CURL now installed."
 fi
 
 if [ -x /usr/bin/screen ]; then
-    echo -e "\e[1;32mSCREEN Installed\e[0m"
+    echo -e " \e[1;32mSCREEN Installed\e[0m"
 else
-    echo -e "\e[1;31mERROR\e[0m"
-    echo "Script detects that Screen is not installed. Installing it now."
+    echo -e " \e[1;31mERROR\e[0m"
+    echo " Script detects that Screen is not installed. Installing it now."
     sudo apt-get install screen
-    echo "SCREEN now installed."
+    echo " SCREEN now installed."
 fi
 
 if [ -x /usr/bin/git ]; then
-    echo -e "\e[1;32mGIT Installed\e[0m"
+    echo -e " \e[1;32mGIT Installed\e[0m"
 else
-    echo -e "\e[1;31mERROR\e[0m"
-    echo "Script detects that Git is not installed. Installing it now."
+    echo -e " \e[1;31mERROR\e[0m"
+    echo " Script detects that Git is not installed. Installing it now."
     apt-get install git
-    echo "GIT now installed."
+    echo " GIT now installed."
 fi
 echo "------------------------------------------------------"
 
@@ -74,22 +74,23 @@ if [ -d .serverscript ]; then
     fi
 else
     echo
-    echo -e '\e[1;31m ERROR \e[0m'
+    echo -e ' \e[1;31mERROR\e[0m'
     echo " Unable to find script directory. Grabbing from github now..."
     mkdir .serverscript
+    
     if [ -d .serverscript ]; then
         echo
-        echo "Script directory created."
+        echo " Script directory created."
     else
         echo
-        echo -e '\e[1;31m ERROR \e[0m'
+        echo -e ' \e[1;31mERROR\e[0m'
         echo " Unable to make script directory. Try again as root user."
         exit 0
     fi
     
     cd .serverscript
     echo
-    echo "Now downloading script files."
+    echo " Now downloading script files."
     echo
     curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/startserver -o startserver -#
     curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/stopserver -o stopserver -#
@@ -100,11 +101,10 @@ else
     
     if [ -e startserver -a -e stopserver -a -e viewserver ]; then
         echo
-        echo "All scripts found."
-        echo
+        echo " All scripts found."
         cd ../
     else
-        echo "Unable able to find one or more of the scripts. Re-Downlading Them"
+        echo " Unable able to find one or more of the scripts. Re-Downlading Them"
         echo
         curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/startserver -o startserver -#
         curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/stopserver -o stopserver -#
@@ -115,12 +115,11 @@ else
         
         if [ -e startserver -a -e stopserver -a -e viewserver ]; then
             echo
-            echo "All scripts found."
-            echo
+            echo " All scripts found."
             cd ../
         else
             echo
-            echo "Second time failing the download. Now exiting. Try again later."
+            echo " Second time failing the download. Now exiting. Try again later."
             echo
             exit 0
         fi
