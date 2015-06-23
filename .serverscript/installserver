@@ -9,18 +9,19 @@ if [ -d steamcmd ]; then
   echo
   echo "Type: [Y]es or [N]o"
   echo -n "[Y/N]: " ; read installchoice
+  
+  if [ $installchoice = Y ]; then
+    echo "Deleting directory. Please wait."
+    rm -rf steamcmd/
+    echo
+    echo "Directory deleted, moving foward."
+  else
+    echo
+    echo "You either chose No or put a wrong response."
+    echo "Directory will not be deleted, script stopping. There is no overried available."
+    exit 0
 fi
-
-if [ $installchoice = Y ]; then
-  echo "Deleting directory. Please wait."
-  rm -rf steamcmd/
-  echo
-  echo "Directory deleted, moving foward."
-else
-  echo
-  echo "You either chose No or put a wrong response."
-  echo "Directory will not be deleted, script stopping. There is no overried available."
-  exit 0
+  
 fi
 
 echo
