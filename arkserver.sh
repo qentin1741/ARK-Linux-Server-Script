@@ -203,6 +203,4 @@ install () {
 
 $*
     echo
-    echo COMPLETE.
-    echo
 exit 0
