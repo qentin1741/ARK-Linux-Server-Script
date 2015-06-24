@@ -1,7 +1,5 @@
 #!/bin/bash
 
-version = 1.0.4
-
 # Check for config file.
 if [ -f configuration.ini ]; then
     # Config file.
