@@ -1,1 +1,6 @@
-1.0.5
+arkserver="1.0.4"
+installserver="1.0.1"
+startserver="1.0.1"
+stopserver="1.0.1"
+updateserver="1.0.1"
+viewserver="1.0.1"
