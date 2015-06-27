@@ -63,7 +63,7 @@ else
     tar -xvzf steamcmd_linux.tar.gz
     cd ../
 fi
-cd ../steamcmd
+cd steamcmd
 echo
 echo "Now updating the server. This may take a while."
 echo
