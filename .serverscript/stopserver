@@ -11,6 +11,10 @@ if screen -list | grep -q "$sessionName"; then
     echo "Server is running, now stopping it."
     echo
     screen -S $sessionName -X quit
+    echo "Session stopped. Removing PID's"
+    echo
+    pkill -9 $arkExecute
+    echo "PID's Removed"
 else
   echo
   echo "Could not find the server session. The server is not running."
