@@ -58,9 +58,12 @@ echo "Setting ULIMIT to 100000"
 echo 
 echo "Going to listed game directory."
 echo "$gameDir"
+cd $gameDir
 echo
 echo "Making sure executable is properly named."
 if [ -f ShooterGameServer ]; then
+    echo "File Exists, Checking Name"
+    sleep 3s
     if [ -f ShooterGameServer != $arkExecute ]; then
         echo
         echo "Renaming executable to name listed in the config."
@@ -71,7 +74,6 @@ if [ -f ShooterGameServer ]; then
 fi
 echo "File named properly, moving forward."
 echo
-cd $gameDir
     
 if [ -f $arkExecute ]; then
     echo " Found executable, preparing startup parameters."        
