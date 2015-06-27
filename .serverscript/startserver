@@ -62,15 +62,24 @@ cd $gameDir
 echo
 echo "Making sure executable is properly named."
 if [ -f ShooterGameServer ]; then
-    echo "File Exists, Checking Name"
+    echo "File name is not as defined."
     sleep 3s
-    if ! [ -f ShooterGameServer = $arkExecute ]; then
+    if [ -f ShooterGameServer = $arkExecute ]; then
+        echo "File matches what in the config."
+    else
         echo
         echo "Renaming executable to name listed in the config."
         mv ShooterGameServer $arkExecute
         echo
         echo "File named changed, moving forward."
     fi
+fi
+
+if [ -f $arkExecute ]; then
+    echo "Proper file name exists."
+else
+    echo "Couldnt rename file. Exiting."
+    exit 0
 fi
 echo "File named properly, moving forward."
 echo
