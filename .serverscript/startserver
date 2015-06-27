@@ -46,6 +46,11 @@ echo
 echo "Starting Server... Please Wait."
 sleep 1s
 echo
+echo "Removing old PID's of the configured executable."
+pkill -9 $arkExecute
+echo
+echo "PID's Removed"
+echo
 echo "Setting ULIMIT to 100000"
     
  ulimit -n 100000
