@@ -48,11 +48,23 @@ sleep 1s
 echo
 echo "Setting ULIMIT to 100000"
     
- #ulimit -n 100000
+ ulimit -n 100000
         
 echo 
 echo "Going to listed game directory."
 echo "$gameDir"
+echo
+echo "Making sure executable is properly named."
+if [ -f ShooterGameServer ]; then
+    if [ -f ShooterGameServer != $arkExecute ]; then
+        echo
+        echo "Renaming executable to name listed in the config."
+        mv ShooterGameServer $arkExecute
+        echo
+        echo "File named changed, moving forward."
+    fi
+fi
+echo "File named properly, moving forward."
 echo
 cd $gameDir
     
