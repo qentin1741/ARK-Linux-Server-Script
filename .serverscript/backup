@@ -1,0 +1,28 @@
+#!/bin/bash
+
+source ../configuration.ini
+cd ../
+
+echo
+echo "Beginning backup process."
+echo
+sleep 2s
+echo "Checking if there is a backups directory."
+
+if [-d .backups ]; then
+  echo
+  echo "Backups directory already made. Moving forward."
+  echo
+else
+  echo
+  echo "The backups directory doesnt exists, making it now."
+  mkdir .backups
+  echo
+fi
+echo "Entering save directory."
+cd ShooterGame
+cd Saved
+cp SavedArks/ ../../.backup/SavedArks
+echo
+echo "Backup complete!"
+exit 0
