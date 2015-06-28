@@ -19,8 +19,10 @@ else
     echo "Updating script. Please wait."
     echo
     echo "Downloading shell file."
-    curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/arkserver.sh -o arkserver.sh -#
-    echo "File overwritten. Please restart the script!"
+    curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/startserver -o startserver -#
+    echo "File overwritten. Restarting script."
+    echo
+    echo "TODO: MAKESURE THERE IS NO STALL"
     exit 0
 fi
 
