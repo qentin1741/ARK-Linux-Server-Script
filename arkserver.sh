@@ -36,7 +36,7 @@ else
 fi
 
 # Version Checker
-version = 1.0.5
+version="1.0.5"
 
 echo "Checking version with github."
 
