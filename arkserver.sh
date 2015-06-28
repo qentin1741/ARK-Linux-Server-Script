@@ -45,7 +45,6 @@ if [ -f version.ini ]; then
 fi
 curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/version.ini -o version.ini -# -o version.ini -#
 source version.ini
-cd ../
 
 if [ $version = $arkserver ]; then
     echo
