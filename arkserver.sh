@@ -40,7 +40,6 @@ version="1.0.5"
 
 echo "Checking version with github."
 
-cd .serverscript
 if [ -f version.ini ]; then
     rm version.ini
 fi
