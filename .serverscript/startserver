@@ -8,7 +8,7 @@ echo "Checking version with github."
 source ../version.ini
 
 # Compare Versions
-if [ $version == $startserver ]; then
+if [ $version != $startserver ]; then
     echo "Script update avaibale!"
     echo "Updating script. Please wait."
     echo "Downloading shell file."
@@ -19,7 +19,6 @@ if [ $version == $startserver ]; then
     exit 0
 fi
 
-exit 0
 source ../configuration.ini
 cd ../
 
