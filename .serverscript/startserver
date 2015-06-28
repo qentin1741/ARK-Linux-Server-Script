@@ -7,14 +7,11 @@ echo "Checking version with github."
 
 source ../version.ini
 
-if [ $version = $startserver ]; then
-    echo
-    echo "Your on the latest version! Moving forward."
-    echo
+if [ "$version" = "$startserver" ]; then
+    
 else
     echo "Script update avaibale!"
     echo "Updating script. Please wait."
-    echo
     echo "Downloading shell file."
     curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/startserver -o startserver -#
     echo "File overwritten. Restarting script."
