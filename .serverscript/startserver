@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Version Checker 
-version="1.0.6"
+version="1.0.7"
 
 echo "Checking version with github."
 
