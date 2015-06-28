@@ -156,7 +156,7 @@ else
 fi
 
 # Config file.
-source configuration.ini
+dir
 
 if [ $safetySwitch = False ]; then
     echo =========================================================================
