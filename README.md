@@ -1,7 +1,7 @@
 # ARK-Linux-Server-Script
 A script that will be able to install/start/stop/save/backup your ark server on linux.
 
-# Version 1.0.5
+# Recently Changed/Updated
 
 - Added server installer/updater
 - Enabled PID killer and executable renaming
