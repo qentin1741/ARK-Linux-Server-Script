@@ -5,10 +5,7 @@ version = 1.0.5
 
 echo "Checking version with github."
 
-cd .serverscript
-curl https://github.com/Zendrex/ARK-Linux-Server-Script/edit/master/.serverscript/version.ini -o version.ini -#
 source version.ini
-cd ../
 
 if [ $version = $startserver ]; then
     echo
