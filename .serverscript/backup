@@ -1,5 +1,24 @@
 #!/bin/bash
 
+# Version Checker 
+version="1.0.5"
+
+echo "Checking version with github."
+
+source ../version.ini
+
+# Compare Versions
+if [ $version != $backup ]; then
+    echo "Script update avaibale!"
+    echo "Updating script. Please wait."
+    echo "Downloading shell file."
+    curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/backup -o backup -#
+    echo "File overwritten. Restarting script."
+    echo
+    echo "TODO: MAKESURE THERE IS NO STALL"
+    exit 0
+fi
+
 source ../configuration.ini
 cd ../
 
