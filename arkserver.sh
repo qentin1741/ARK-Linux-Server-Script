@@ -41,7 +41,7 @@ version = 1.0.5
 echo "Checking version with github."
 
 cd .serverscript
-curl https://github.com/Zendrex/ARK-Linux-Server-Script/edit/master/.serverscript/version.ini -o version.ini -#
+curl curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/version.ini -o version.ini -# -o version.ini -#
 source version.ini
 cd ../
 
