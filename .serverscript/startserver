@@ -7,6 +7,7 @@ echo "Checking version with github."
 
 source ../version.ini
 
+# Compare Versions
 if [ "$version" == "$startserver" ]; then
     echo "Script update avaibale!"
     echo "Updating script. Please wait."
