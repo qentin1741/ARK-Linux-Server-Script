@@ -35,6 +35,30 @@ else
     fi
 fi
 
+# Version Checker
+version = 1.0.5
+
+echo "Checking version with github."
+
+cd .serverscript
+curl https://github.com/Zendrex/ARK-Linux-Server-Script/edit/master/.serverscript/version.ini -o version.ini -#
+source version.ini
+cd ../
+
+if [ $version = $shell_version ]; then
+    echo
+    echo "Your on the latest version! Moving forward."
+    echo
+else
+    echo "Script update avaibale!"
+    echo "Updating script. Please wait."
+    echo
+    echo "Downloading shell file."
+    curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/arkserver.sh -o arkserver.sh -#
+    echo "File overwritten. Please restart the script!"
+    exit 0
+fi
+
 # Hard dep's check. If one isnt installed, it will install it whithout asking. Can change this in the future.
 if [ -x /usr/bin/curl ]; then
     if [ $safetyNotif = True ]; then
