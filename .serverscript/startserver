@@ -5,7 +5,7 @@ version = 1.0.5
 
 echo "Checking version with github."
 
-source version.ini
+source ../version.ini
 
 if [ $version = $startserver ]; then
     echo
