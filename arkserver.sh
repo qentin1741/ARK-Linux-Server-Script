@@ -43,7 +43,7 @@ echo "Checking version with github."
 if [ -f version.ini ]; then
     rm version.ini
 fi
-curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/version.ini -o version.ini -# -o version.ini -#
+curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/version.ini -o version.ini -# -o version.ini -#
 source version.ini
 
 if [ $version = $arkserver ]; then
