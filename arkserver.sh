@@ -45,7 +45,7 @@ curl https://github.com/Zendrex/ARK-Linux-Server-Script/edit/master/.serverscrip
 source version.ini
 cd ../
 
-if [ $version = $shell_version ]; then
+if [ $version = $arkserver ]; then
     echo
     echo "Your on the latest version! Moving forward."
     echo
