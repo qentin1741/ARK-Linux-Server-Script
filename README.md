@@ -8,9 +8,11 @@ A script that will be able to install/start/stop/save/backup your ark server on 
 - Depdenceny checker enabled.
 - Script Updater
 - 
-# Upcoming Features
+# Upcoming Features (1.0.9)
 
-- Server Updater (automatic checker)
+- Reformatting & Color Scheme
+The script is no long as spammy as it was before. Formatting is much cleaner and scripts are a bit smaller.
+- Restart Script (No need to do a stop then start)
 
 # Description
 The goal of this script is to make it easy as possible for someone to manage their own 'ARK:Survival Evolved' server over a linux server. This script is still very new but also already has many built in features.
