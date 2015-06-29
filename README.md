@@ -11,7 +11,9 @@ A script that will be able to install/start/stop/save/backup your ark server on 
 # Upcoming Features (1.0.9)
 
 - Reformatting & Color Scheme
+
 The script is no long as spammy as it was before. Formatting is much cleaner and scripts are a bit smaller.
+
 - Restart Script (No need to do a stop then start)
 
 # Description
