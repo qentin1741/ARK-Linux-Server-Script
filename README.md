@@ -28,5 +28,5 @@ The goal of this script is to make it easy as possible for someone to manage the
 
 Open SSH, direct to your GameServer folder. Then run the following command:
 ````
-wget https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/arkserver.sh && chmod 777 arkserver.sh && ./arkserver.sh
+wget http://git.io/vti2u && chmod +x arkserver.sh && ./arkserver.sh
 ````
