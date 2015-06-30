@@ -30,31 +30,34 @@ else
     echo -e " Up to date!"; echo -e
 fi
 
-if [ -z $configVersion ]; then
-    echo -e "$ERR You have an outdated configuration file!"; echo -e
-    echo -e "$YELLOW There is a config update! any config updaters are important to the script. $RESET"
-    echo -e "$YELLOW The script will make a backup of your current config. However you will have to $RESET"
-    echo -e "$YELLOW re edit the config file. Sorry for the flaw in this design of the script. $RESET"
-    sleep 1s
-    mv configuration.ini configuration_backup.ini
-    echo -e "$YELLOW File backed up. Downloading new config file. $RESET"
-    curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/configuration.ini -o configuration.ini -#
-    echo -e; echo -e "$GREEN Configuration file updated. Please edit your config once again then restart the script. $RESET"
-    echo -e "$GREEN Most options you can simply copy paste as most config updaters are additions/formatting. $RESET"
-    echo -e; exit 0
-fi
+if [ -f configuration.ini ]; then
+source configuration.ini
+    if [ -z $configVersion ]; then
+        echo -e "$ERR You have an outdated configuration file!"; echo -e
+        echo -e "$YELLOW There is a config update! any config updaters are important to the script. $RESET"
+        echo -e "$YELLOW The script will make a backup of your current config. However you will have to $RESET"
+        echo -e "$YELLOW re edit the config file. Sorry for the flaw in this design of the script. $RESET"
+        sleep 1s
+        mv configuration.ini configuration_backup.ini
+        echo -e "$YELLOW File backed up. Downloading new config file. $RESET"
+        curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/configuration.ini -o configuration.ini -#
+        echo -e; echo -e "$GREEN Configuration file updated. Please edit your config once again then restart the script. $RESET"
+        echo -e "$GREEN Most options you can simply copy paste as most config updaters are additions/formatting. $RESET"
+        echo -e; exit 0
+    fi
 
-if [ $configVersion != $liveConfig ]; then
-    echo -e "$YELLOW There is a config update! any config updaters are important to the script. $RESET"
-    echo -e "$YELLOW The script will make a backup of your current config. However you will have to $RESET"
-    echo -e "$YELLOW re edit the config file. Sorry for the flaw in this design of the script. $RESET"
-    sleep 1s
-    mv configuration.ini configuration_backup.ini
-    echo -e "$YELLOW File backed up. Downloading new config file. $RESET"
-    curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/configuration.ini -o configuration.ini -#
-    echo -e; echo -e "$GREEN Configuration file updated. Please edit your config once again then restart the script. $RESET"
-    echo -e "$GREEN Most options you can simply copy paste as most config updaters are additions/formatting."
-    echo -e; exit 0
+    if [ $configVersion != $liveConfig ]; then
+        echo -e "$YELLOW There is a config update! any config updaters are important to the script. $RESET"
+        echo -e "$YELLOW The script will make a backup of your current config. However you will have to $RESET"
+        echo -e "$YELLOW re edit the config file. Sorry for the flaw in this design of the script. $RESET"
+        sleep 1s
+        mv configuration.ini configuration_backup.ini
+        echo -e "$YELLOW File backed up. Downloading new config file. $RESET"
+        curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/configuration.ini -o configuration.ini -#
+        echo -e; echo -e "$GREEN Configuration file updated. Please edit your config once again then restart the script. $RESET"
+        echo -e "$GREEN Most options you can simply copy paste as most config updaters are additions/formatting."
+        echo -e; exit 0
+    fi
 fi
 
 # Check for config file.
