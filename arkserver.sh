@@ -152,6 +152,7 @@ else
     echo -e -n "$YELLOW Backup Script $RESET" ; curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/backupserver -o backupserver -#
     echo -e -n "$YELLOW Formatting $RESET" ; curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/formatting.ini -o formatting.ini -#
     chmod 777 *
+    cd ../
 fi
 
 # Config file.
