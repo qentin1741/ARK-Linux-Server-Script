@@ -108,7 +108,7 @@ fi
 
 if [ -x /usr/bin/git ]; then
     if [ $safetyNotif = True ]; then
-        echo -e "$GREEN Installed $RESET"
+        echo -e "$GREEN GIT Installed $RESET"
     fi
 else
     echo -e "$ERR Script detects that Git is not installed. Installing it now."
@@ -117,7 +117,7 @@ else
 fi
 
 if [ -z "$(iptables -nL | grep $querryPort)" ]; then
-    echo -e "Adding iptables requirments. (Querry Port)"
+    echo -e " Adding iptables requirments. (Querry Port)"
     iptables -I INPUT -p udp --dport $querryPort -j ACCEPT
     iptables -I INPUT -p tcp --dport $querryPort -j ACCEPT
 else
@@ -125,7 +125,7 @@ else
 fi
 
 if [ -z "$(iptables -nL | grep $serverPort)" ]; then
-    echo -e "Adding iptables requirments. (Server Port)"
+    echo -e " Adding iptables requirments. (Server Port)"
     iptables -I INPUT -p udp --dport $serverPort -j ACCEPT
     iptables -I INPUT -p tcp --dport $serverPort -j ACCEPT
 else
