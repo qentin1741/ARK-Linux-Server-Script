@@ -1,93 +1,67 @@
 #!/bin/bash
 
 # Version Checker 
-version="1.0.5"
-
-echo "Checking version with github."
+version="1.0.9"
 
 source ../version.ini
+source ../configuration.ini
+source formatting.ini
 
 # Compare Versions
+echo -e; echo -e "$YELLOW Checking version with github. $RESET"
 if [ $version != $updateserver ]; then
-    echo "Script update avaibale!"
-    echo "Updating script. Please wait."
-    echo "Downloading shell file."
+    echo -e; echo -e "$YELLOW Script update avaibale! $RESET"
+    echo -e "$YELLOW Downloading shell file. $RESET"
     curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/updateserver -o updateserver -#
-    echo "File overwritten. Restarting script."
-    echo
-    echo "TODO: MAKESURE THERE IS NO STALL"
+    echo -e "$GREEN File overwritten. Please restart the script. $RESET"
     exit 0
+else
+    echo -e " Up to date!"; echo -e
 fi
 
-source ../configuration.ini
-
-echo
-echo "Prepairing to update the server..."
-echo
+echo -e; echo -e "$GREEN Prepairing to update the server. $RESET"; echo -e
 sleep 1s
-echo "Checking to see if the server is on or off."
+echo -e "Checking to see if the server is running."
 sleep 2s
-
-# First Live Server Check
+# Server Running Check
 if screen -list | grep -q "$sessionName"; then
-    echo
-    echo "Server is running, now stopping it."
-    echo
+    echo -e " Server is running, now stopping it."
     screen -S $sessionName -X quit
-    echo "Server is now stopping. Giving the server 10 seconds before continuting."
-    sleep 10s
+    echo -e " Session stopped. Removing PID's"
+    PID=`pgrep -f $arkExecute`
+    kill -9 $PID
+    echo -e " PID's Removed"; echo -e
+    echo -e "$RED Server Stopped $RESET"
+    sleep 1s
 else
-  echo
-  echo "Server isnt running, doing second check before continuing."
+    echo -e " Server is offline. Moving forward."
 fi
 
-# Second Live Server Check
-if screen -list | grep -q "$sessionName"; then
-    echo
-    echo "Server is still online. Seems the script cant stop it."
-    echo
-    echo "Try to manualy stop it with the following commands:"
-    echo
-    echo "$ screen -ls"
-    echo "$ kill -9 <screen PID>"
-    echo
-    exit 0
-else
-  echo
-  echo "Second check shows the server is offline. :) Moving foward."
-fi
-
-echo
-echo "Locating SteamCMD directory."
+echo -e; echo -e "$YELLOW Locating SteamCMD directory. $RESET"
 cd ../
 if [ -d steamcmd ]; then
-    echo
-    echo "SteamCMD directory found, moving forward."
+    echo -e " SteamCMD directory found, moving forward."
 else
-    echo
-    echo "Couldnt find the steamCMD directory, we will install steamCMD now."
-    echo
-    echo "Creating directory 'steamcmd'"
+    echo -e " $ERR Couldnt find the SteamCMD directory, Installing it now."
+    echo -e " Creating directory 'steamcmd'"
     mkdir steamcmd
     cd ../steamcmd
-    echo
-    echo "Installing linux steam dependencies."
+    
+    echo -e " Installing linux steam dependencies."
     sudo apt-get install lib32gcc1
-    echo "Lib32gcc1 is installed."
-    echo
-    echo "Downloading steamcmd zip."
+    echo -e "$YELLOW Lib32gcc1 is installed. $RESET"
+    
+    echo -e " Downloading steamcmd zip."
     curl https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz -o steamcmd_linux.tar.gz -#
-    echo
-    echo "Unzipping zip."
     tar -xvzf steamcmd_linux.tar.gz
     cd ../
 fi
+
 cd steamcmd
-echo
-echo "Now updating the server. This may take a while."
-echo
+echo -e; echo -e "$YELLOW Now updating the server. This may take a while. $RESET"
+echo -e
 ./steamcmd.sh +login anonymous +force_install_dir ../ +app_update $gameid validate +quit
-echo
-echo "Complete. Exiting."
-echo
-echo "Please restart the script to start the server."
+
+echo -e; echo -e "$GREEN Server Update Complete. $RESET"
+echo -e; echo -e "$YELLOW Please restart the script to start the server. $RESET"
+exit 0
