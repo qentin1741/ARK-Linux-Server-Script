@@ -39,7 +39,7 @@ source configuration.ini
         echo -e "$YELLOW re edit the config file. Sorry for the flaw in this design of the script. $RESET"
         sleep 1s
         mv configuration.ini configuration_backup.ini
-        echo -e "$YELLOW File backed up. Downloading new config file. $RESET"
+        echo -e; echo -e "$YELLOW File backed up. Downloading new config file. $RESET"
         curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/configuration.ini -o configuration.ini -#
         echo -e; echo -e "$GREEN Configuration file updated. Please edit your config once again then restart the script. $RESET"
         echo -e "$GREEN Most options you can simply copy paste as most config updaters are additions/formatting. $RESET"
