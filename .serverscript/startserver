@@ -1,172 +1,154 @@
 #!/bin/bash
 
 # Version Checker 
-version="1.0.5"
-
-echo "Checking version with github."
+version="1.0.9"
 
 source ../version.ini
+source ../configuration.ini
+source formatting.ini
 
 # Compare Versions
+echo -e; echo -e "$YELLOW Checking version with github. $RESET"
 if [ $version != $startserver ]; then
-    echo "Script update avaibale!"
-    echo "Updating script. Please wait."
-    echo "Downloading shell file."
+    echo -e "$YELLOW Script update avaibale! $RESET"
+    echo -e "$YELLOW Downloading shell file. $RESET"
     curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/startserver -o startserver -#
-    echo "File overwritten. Restarting script."
-    echo
-    echo "TODO: MAKESURE THERE IS NO STALL"
+    echo -e "$GREEN File overwritten. Please restart the script. $RESET"
     exit 0
+else
+    echo -e " Up to date!"; echo -e
 fi
 
-source ../configuration.ini
-cd ../
 
-echo
-echo "Checking to see if the server is already running..."
-echo
+echo -e " Checking if server session exists..."
 sleep 1s
+cd ../
 if screen -list | grep -q "$sessionName"; then
-    echo
-    echo -e " \e[1;31mERROR \e[0m A screen with the name $sessionName is already running.\e[0m"
-    echo "Would you like me to stop this running process?"
-    echo
-    echo "Type: Yes(Y) or No(N)"
-    echo -n "[Y/N]: " ; read runningsession
+    echo -e "$ERR The server is already running. The server session name is:$YELLOW $sessionname $RESET"
+    echo -e " Would you like me to stop this running server?"
+    echo -e; echo -e -n "$YELLOW Type: Yes(Y) or No(N): " ; read runningsession
     
     if [ $runningsession = Y ]; then
-        screen -S $sessionName -X quit
-        
-        if screen -list | grep -q "$sessionName"; then
-            echo
-            echo "Unable to stop the process. Please try yourself with this command:"
-            echo
-            echo "screen -S $sessionName -X quit"
-            echo
-            exit 0
-        else
-            echo
-            echo "Process stopped successfully. :)"
-            echo
-        fi
-    elif [ $runningsession = N ]; then
-        echo
-        echo "The script will NOT stop the session as you chose against it."
-        echo
-        echo "Exiting the script now."
-        echo
+		cd .serverscript
+		./stopserver
+    else
+        echo -e; echo -e "$ERR The script will NOT stop the session as you chose against it."
+        echo -e; echo -e " Exiting the script now."; echo -e
         exit 0
     fi
-    
 fi
 
 # Start Function (ignore my sleeps and echos, looks nicer this way)
-echo
-echo "Starting Server... Please Wait."
-sleep 1s
-echo
-echo "Removing old PID's of the configured executable."
-pkill -9 $arkExecute
-echo
-echo "PID's Removed"
-echo
-echo "Setting ULIMIT to 100000"
-    
- ulimit -n 100000
-        
-echo 
-echo "Going to listed game directory."
-echo "$gameDir"
+echo -e; echo -e "$GREEN Starting Server. Please Wait. $RESET"
+echo -e; sleep 1s
+echo -e " $YELLOW Setting ULIMIT to 100000 $RESET"
+
+# ULIMIT CHANGE
+ulimit -n 100000
 cd $gameDir
-echo
-echo "Making sure executable is properly named."
-if [ -f ShooterGameServer ]; then
-    echo "File name is not as defined."
-    sleep 3s
-    if [ -f ShooterGameServer = $arkExecute ]; then
-        echo "File matches what in the config."
+
+echo -e; echo -e " Making sure executable is properly named."
+if [ -f $arkExecute ]; then
+    echo -e " Executable found."
+else
+    echo -e "$ERR Executable could not be found. Fixing it."
+    cp ShooterGameServer $arkExecute
+    if [ -f $arkExecute ]; then
+        echo -e " Executable renamed. Moving forward."
     else
-        echo
-        echo "Renaming executable to name listed in the config."
-        mv ShooterGameServer $arkExecute
-        echo
-        echo "File named changed, moving forward."
+        echo -e; echo -e "$ERR Unable to fix executable name."
+        echo -e " Please change the file named$YELLOW ShooterGameServer$RESET to$GREEN $arkExecute $RESET"
+        exit 0
     fi
 fi
+sleep 1s
+echo -e; echo -e "$YELLOW Running startup parameters. These parameter will be listed below now. $RESET"
+echo -e; echo -e "-----------------------------------------------------"; echo -e
+echo -e " Executed File: $arkExecute"
+echo -e " Screen Name: $sessionName"
+echo -e " HostName: \e[1;32m$hostName\e[1;33m$arkServersName $RESET"
+echo -e " AdminPass: \e[1;33m$adminPass $RESET"
 
-if [ -f $arkExecute ]; then
-    echo "Proper file name exists."
-else
-    echo "Couldnt rename file. Exiting."
-    exit 0
-fi
-echo "File named properly, moving forward."
-echo
-    
-if [ -f $arkExecute ]; then
-    echo " Found executable, preparing startup parameters."        
-else
-    echo
-    echo -e " \e[1;31mERROR \e[0m Script was unable to find th executable: \e[1;33m$arkExecute\e[0m"
-    echo; echo
-    echo " These are the files the script has found:"
-    echo; echo "================================="
-    echo -e "\e[1;32m"
-    dir
-    echo -e "\e[0m"
-    echo "================================="; echo
-    echo -e " None of these are the file \e[1;33m$arkExecute\e[0m"
-    echo " Exiting out now."
-    echo
-    exit 0
-fi
-    
-echo
-echo "Running startup parameters. These parameter will be listed below now."
-echo
-echo "-----------------------------------------------------"
-echo
-echo "Executed File: $arkExecute"
-echo "Screen Name: $sessionName"
-echo -e "HostName: \e[1;32m$hostName\e[1;33m$arkServersName\e[0m"
-echo -e "AdminPass: \e[1;33m$adminPass \e[0m"
-    
 if [ -z $serverPass ]; then
-    echo -e "ServerPass: \e[1;31mNO PASSWORD \e[0m"
+    echo -e " ServerPass \e[1;31mNO PASSWORD $RESET"
 else
-    echo -e "ServerPass: \e[1;32m$serverPass \e[0m"
+    echo -e " ServerPass \e[1;31m$serverPass $RESET"
 fi
     
 if [ -z $arkServersName ]; then
-    echo -e "ArkServers: \e[1;31mDISABLED \e[0m"     
+    echo -e " ArkServers \e[1;31mDISABLED $RESET" 
 else    
-    echo -e "ArkServers: \e[1;33m$arkServers \e[0m"   
+    echo -e " ArkServers \e[1;31m$arkServers $RESET"   
 fi
     
-echo
-echo "#### SERVER SETTINGS ###"
-echo
-echo "ShowPlayers:          $showPlayers"
-echo "Hardcore:             $hardcore"
-echo "GlobalVoice:          $globalVoice"
-echo "Ranged Chat:          $proxChat"
-echo "Tribute Downloads:    $noTributeDl"
-echo "Third Person:         $thirdPerson"
-echo "Notify Left:          $notifyLeft"
-echo "No Notify Join:       $dontNotifyJoin"
-echo "PVE:                  $pveServer"
-echo "CrossHair:            $crossHair"
-echo "No Hud:               $noHud"
-echo "Difficulty Rate:      $difficulty"
-echo
-echo "-----------------------------------------------------"
-echo 
+echo -e
+echo -e " #### SERVER SETTINGS ###"
+echo -e
+echo -e " ShowPlayers:        \e[1;36m$showPlayers $RESET"
+echo -e " Hardcore:           \e[1;36m$hardcore $RESET"
+echo -e " GlobalVoice:        \e[1;36m$globalVoice $RESET"
+echo -e " Ranged Chat:        \e[1;36m$proxChat $RESET"
+echo -e " No Tribute DL:      \e[1;36m$noTributeDl $RESET"
+echo -e " Third Person:       \e[1;36m$thirdPerson $RESET"
+echo -e " Notify Left:        \e[1;36m$notifyLeft $RESET"
+echo -e " No Notify Join:     \e[1;36m$dontNotifyJoin $RESET"
+echo -e " PVE:                \e[1;36m$pveServer $RESET"
+echo -e " CrossHair:          \e[1;36m$crossHair $RESET"
+echo -e " No Hud:             \e[1;36m$noHud $RESET"
+echo -e " Difficulty Ratio:   \e[1;36m$difficulty $RESET"
+echo -e
+echo -e "-----------------------------------------------------"; echo -e
 sleep 2s
-echo "Now executing...."
+echo -e "$YELLOW Now executing.... $RESET"
 
-screen -A -m -d -S $sessionName ./$arkExecute TheIsland?listen?SessionName=$hostName?ServerAdminPassword=$adminPass?ServerPassword=$serverPass?ShowMapPlayerLocation=$showPlayers?ServerHardcore=$hardcore?GlobalVoiceChat=$globalVoice?ProximityChat=$proxChat?NoTributeDownloads=$noTributeDl?AllowThirdPersonPlayer=$thirdPerson?AlwaysNotifyPlayerLeft=$notifyLeft?DontAlwaysNotifyPlayerJoined=$dontNotifyJoin?ServerPVE=$pveServer?ServerCrosshair=$crossHair?ServerForceNoHUD=$noHud?DifficultyOffset=$difficulty -server -log
+executeString="
+$map?\
+listen?\
+Port=$serverPort?\
+QuerryPort=$querryPort?\
+SessionName=$hostName?\
+MaxPlayers=$playerCount?\
+ServerAdminPassword=$adminPass?\
+ServerPassword=$serverPass?\
+bEnablePvPGamma=$enablePvPGamma?\
+ShowMapPlayerLocation=$showPlayers?\
+ServerHardcore=$hardcore?\
+GlobalVoiceChat=$globalVoice?\
+ProximityChat=$proxChat?\
+NoTributeDownloads=$noTributeDl?\
+AllowThirdPersonPlayer=$thirdPerson?\
+AlwaysNotifyPlayerLeft=$notifyLeft?\
+DontAlwaysNotifyPlayerJoined=$dontNotifyJoin?\
+ServerPVE=$pveServer?ServerCrosshair=$crossHair?\
+ServerForceNoHUD=$noHud?\
+DifficultyOffset=$difficulty?\
+TamingSpeedMultiplier=$TamingSpeedMultiplier?\
+HarvestAmountMultiplier=$HarvestAmountMultiplier?\
+PlayerCharacterWaterDrainMultiplier=$PlayerCharacterWaterDrainMultiplier?\
+PlayerCharacterFoodDrainMultiplier=$PlayerCharacterFoodDrainMultiplier?\
+DinoCharacterFoodDrainMultiplier=$DinoCharacterFoodDrainMultiplier?\
+PlayerCharacterStaminaDrainMultiplier=$PlayerCharacterStaminaDrainMultiplier?\
+DinoCharacterStaminaDrainMultiplier=$DinoCharacterStaminaDrainMultiplier?\
+PlayerCharacterHealthRecoveryMultiplier=$PlayerCharacterHealthRecoveryMultiplier?\
+DinoCharacterHealthRecoveryMultiplier=$DinoCharacterHealthRecoveryMultiplier?\
+DinoCountMultiplier=$DinoCountMultiplier?\
+HarvestHealthMultiplier=$HarvestHealthMultiplier?\
+PvEStructureDecayDestructionPeriod=$PvEStructureDecayDestructionPeriod?\
+MaxStructuresInRange=$MaxStructuresInRange?\
+DayCycleSpeedScale=$DayCycleSpeedScale?\
+NightTimeSpeedScale=$NightTimeSpeedScale?\
+DayTimeSpeedScale=$DayTimeSpeedScale?\
+DinoDamageMultiplier=$DinoDamageMultiplier?\
+TamedDinoDamageMultiplier=$TamedDinoDamageMultiplier?\
+PlayerDamageMultiplier=$PlayerDamageMultiplier?\
+StructureDamageMultiplier=$StructureDamageMultiplier?\
+PlayerResistanceMultiplier=$PlayerResistanceMultiplier?\
+DinoResistanceMultiplier=$DinoResistanceMultiplier?\
+TamedDinoResistanceMultiplier=$TamedDinoResistanceMultiplier?\
+StructureResistanceMultiplier=$StructureResistanceMultiplier?\
+XPMultiplier=$XPMultiplier? -server -log"
 
-echo
-echo "Server is now starting up. To access the console, relauch the scrip and type: ./arkscript view"
-echo
-exit 0
+screen -A -m -d -S $sessionName ./$arkExecute $executeString
+
+echo -e; echo -e "$GREEN Server is now starting up. To access the console, relauch the scrip and type: ./arkscript view $RESET"
+echo -e; exit 0
