@@ -184,7 +184,7 @@ help () {
         clear
     fi
     echo -e
-    echo -e '$WHITE Use the following commands: $RESET'
+    echo -e "$WHITE Use the following commands: $RESET"
     echo -e
     echo -e "$CYAN arkserver.sh <start|stop|view|install|update> $RESET"
     echo -e
