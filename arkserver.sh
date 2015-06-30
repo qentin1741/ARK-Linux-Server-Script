@@ -144,13 +144,13 @@ else
     mkdir .serverscript
     cd .serverscript
     echo -e; echo -e "$YELLOW Now downloading script files. $RESET"; echo -e
-    echo -e -n "$YELLOW Start Script $RESET" ; curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/startserver -o startserver -#
-    echo -e -n "$YELLOW Stop Script $RESET" ; curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/stopserver -o stopserver -#
-    echo -e -n "$YELLOW View Script $RESET" ; curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/viewserver -o viewserver -#
-    echo -e -n "$YELLOW Install Script $RESET" ; curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/installserver -o installserver -#
-    echo -e -n "$YELLOW Update Script $RESET" ; curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/updateserver -o updateserver -#
-    echo -e -n "$YELLOW Backup Script $RESET" ; curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/backupserver -o backupserver -#
-    echo -e -n "$YELLOW Formatting $RESET" ; curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/formatting.ini -o formatting.ini -#
+    echo -e "$YELLOW Start Script $RESET" ; curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/startserver -o startserver -#
+    echo -e "$YELLOW Stop Script $RESET" ; curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/stopserver -o stopserver -#
+    echo -e "$YELLOW View Script $RESET" ; curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/viewserver -o viewserver -#
+    echo -e "$YELLOW Install Script $RESET" ; curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/installserver -o installserver -#
+    echo -e "$YELLOW Update Script $RESET" ; curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/updateserver -o updateserver -#
+    echo -e "$YELLOW Backup Script $RESET" ; curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/backupserver -o backupserver -#
+    echo -e "$YELLOW Formatting $RESET" ; curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/formatting.ini -o formatting.ini -#
     chmod 777 *
     cd ../
 fi
