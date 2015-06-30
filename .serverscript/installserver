@@ -1,77 +1,64 @@
 #!/bin/bash
 
 # Version Checker 
-version="1.0.5"
-
-echo "Checking version with github."
+version="1.0.9"
 
 source ../version.ini
+source ../configuration.ini
+source formatting.ini
 
 # Compare Versions
-if [ $version != $installserver ]; then
-    echo "Script update avaibale!"
-    echo "Updating script. Please wait."
-    echo "Downloading shell file."
+echo -e; echo -e "$YELLOW Checking version with github. $RESET"
+if [ $version != $stopserver ]; then
+    echo -e "$YELLOW Script update avaibale! $RESET"
+    echo -e "$YELLOW Downloading shell file. $RESET"
     curl https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/.serverscript/installserver -o installserver -#
-    echo "File overwritten. Restarting script."
-    echo
-    echo "TODO: MAKESURE THERE IS NO STALL"
+    echo -e "$GREEN File overwritten. Please restart the script. $RESET"
     exit 0
+else
+    echo -e " Up to date!"; echo -e
 fi
-
-source ../configuration.ini
 
 cd ../
 if [ -d steamcmd ]; then
-  echo
-  echo "There was a directory already named 'steamcmd', is it ok to delete this?"
-  echo
-  echo "Type: [Y]es or [N]o"
-  echo -n "[Y/N]: " ; read installchoice
+  echo -e "$YELLOW There was a directory already named 'steamcmd', is it ok to delete this? $RESET"
+  echo -e -n " Type: Yes or No: " ; read installchoice
+  echo -e
   
-  if [ $installchoice = Y ]; then
-    echo "Deleting directory. Please wait."
+  if [ $installchoice = yes ]; then
     rm -rf steamcmd/
-    echo
-    echo "Directory deleted, moving foward."
+    echo -e " Old SteamCMD directory deleted."
+  elif [ $installchoice = no ]; then
+    echo -e "$RED SteamCMD directory wont be deleted."
+    echo -e " If the script fails, pleas select Yes next time."
   else
-    echo
-    echo "You either chose No or put a wrong response."
-    echo "Directory will not be deleted, script stopping. There is no overried available."
+    echo -e "$ERR You have put an invalid answer. $RESET"
+    echo -e " Directory will not be deleted, script stopping."
     exit 0
   fi
 fi
 
-echo
-echo "Creating directory 'steamcmd'"
+echo -e "$YELLOW Creating the SteamCMD directory. $RESET"
 mkdir steamcmd
-
 if [ -d steamcmd ]; then
-  echo
-  echo "Directory created, moving forward."
+  echo -e " Directory created, moving forward."
   cd steamcmd
 else
-  echo
-  echo "Unable to make the directory, please post this to the issues on github."
-  echo "https://github.com/Zendrex/ARK-Linux-Server-Script/issues"
+  echo -e "$ERR Unable to make the directory, please post this to the issues on github. $RESET"
+  echo -e " https://github.com/Zendrex/ARK-Linux-Server-Script/issues"
   exit 0
 fi
 
-echo
-echo "Installing linux steam dependencies."
+echo -e; echo -e "$YELLOW Installing linux steam dependencies. $RESET"
 sudo apt-get install lib32gcc1
-echo "Lib32gcc1 is installed."
-echo
-echo "Downloading steamcmd zip."
+echo -e " Lib32gcc1 is installed."
+
+echo -e; echo -e "$YELLOW Installing SteamCMD $RESET"
 curl https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz -o steamcmd_linux.tar.gz -#
-echo
-echo "Unzipping zip."
 tar -xvzf steamcmd_linux.tar.gz
-echo
-echo "Logging into steamcmd and downlading/installing the game server files. This may take a while."
-echo
+
+echo -e; echo -e "$YELLOW SteamCMD Installed. Now installing game server. This may take a while. $RESET"
 ./steamcmd.sh +login anonymous +force_install_dir ../ +app_update $gameid validate +quit
-echo
-echo "Complete. Exiting."
-echo
-echo "Please restart the script to start the server."
+echo -e
+echo -e "$GREEN Complete. Exiting. $RESET"
+echo -e " You may now start the server with $GREEN ./arkserver start $RESET"
