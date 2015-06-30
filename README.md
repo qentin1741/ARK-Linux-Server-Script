@@ -50,5 +50,5 @@ An advanced ark linux server script that allows you to do a number of things for
 # How To Install
 Open SSH, direct to your GameServer folder. Then run the following command:
 ````
-wget http://git.io/vti2u && chmod +x arkserver.sh && ./arkserver.sh
+wget https://raw.githubusercontent.com/Zendrex/ARK-Linux-Server-Script/master/arkserver.sh && chmod +x arkserver.sh && ./arkserver.sh
 ````
