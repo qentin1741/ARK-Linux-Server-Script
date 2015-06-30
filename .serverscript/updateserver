@@ -60,7 +60,7 @@ fi
 cd steamcmd
 echo -e; echo -e "$YELLOW Now updating the server. This may take a while. $RESET"
 echo -e
-./steamcmd.sh +login anonymous +force_install_dir ../ +app_update $gameid validate +quit
+cd .. && ./steamcmd.sh +login anonymous +force_install_dir ../ +app_update $gameid validate +quit
 
 echo -e; echo -e "$GREEN Server Update Complete. $RESET"
 echo -e; echo -e "$YELLOW Please restart the script to start the server. $RESET"
